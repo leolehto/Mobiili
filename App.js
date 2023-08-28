@@ -18,7 +18,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={{fontSize: 20, justifyContent: 'space-around', fontWeight: 'bold'}}>Result:{result} </Text>
+      <Text style={{fontSize: 20, justifyContent: 'space-around', fontWeight: 'bold'}}
+      >Result:{result} </Text>
       <TextInput 
         style={{width: 200, borderWidth: 2}} keyboardType='numeric'
         onChangeText={number1 => setNumber1(number1)} value={number1}
@@ -49,4 +50,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+ 
 });
