@@ -7,17 +7,21 @@ export default function App() {
   const[number1, setNumber1] = useState("");
   const[number2, setNumber2] = useState("");
   const[result, setResult] = useState("");
-  const[data, setData] = useState([]);
+  const[calculation, setCalculation] = useState([]);
+  
   
   const buttonPressed1 = () => {
     const plus = parseFloat(number1) + parseFloat(number2)
-    setResult(plus);
-    setData([...data, {key: result}]);
+    const newCalculation = `${number1} + ${number2} = ${plus}`;
+    setResult(plus)
+    setCalculation([newCalculation, ...calculation]);
   };
   const buttonPressed2 = () => {
     const minus = parseFloat(number1) - parseFloat(number2)
-    setResult(minus);
-    setData([...data, {key: result}]);
+    const newCalculation = `${number1} - ${number2} = ${minus}`;
+    setResult(minus)
+    setCalculation([newCalculation, ...calculation]);
+    
   };
 
 
@@ -37,9 +41,9 @@ export default function App() {
       <Button onPress={buttonPressed1} color={'green'} title='+'/>
       <Button onPress={buttonPressed2} color={'red'} title='-'/>
       </View>
-      <FlatList data={data} 
-      renderItem={({item}) => <Text>{item.key}</Text>} 
-      keyExtractor={(item, index) => index.toString()} />
+      <FlatList data={calculation} 
+       keyExtractor={(item, index) => index.toString()}
+       renderItem={({ item }) => <Text style={{ fontSize: 20 }}>{item}</Text>}/>
       <StatusBar style="auto" 
       />
     </View>
@@ -53,11 +57,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 50,
   },
   buttons:{
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginTop: 20
   },
  
 });
